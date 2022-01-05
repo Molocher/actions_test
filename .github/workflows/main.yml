@@ -18,4 +18,7 @@ jobs:
       - name: Python version
         run: python --version
         
+      - name: Hello world
+        run: python test.py
+        
 
