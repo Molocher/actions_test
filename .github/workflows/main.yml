@@ -18,6 +18,10 @@ jobs:
       - name: Python version
         run: python --version
         
+      - name: List files in the repository
+        run: |
+          ls ${{github.workspace}}
+        
       - name: Hello world
         run: python ${{github.workspace}}/test.py
         
