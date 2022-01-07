@@ -1,0 +1,49 @@
+name: smart_contract
+on: push
+jobs:
+  job1:
+    name: maven package
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "mvn pacakge to generate gjavac-compiler/target/gjavac-${version}-jar-with-dependencies.jar to generate gjavac.jar"
+      
+  job2:
+    name: compile .class file
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "javac compile smart contract source code to .class file"
+      
+  job3:
+    name: gjavac.jar .class file
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "gjavac.jar path-of-need-.class-files to generate contract's assembler file(*.ass file)"
+    needs: [job1,job2]
+    
+  job4:
+    name: uvm_ass
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "uvm_ass path-of-.ass-file to generate bytecode file(.out) and metadata file(.meta.json)"
+    needs: job3
+    
+  job5:
+    name: package_gpc
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "package_gpc path-of-bytecode-file path-of-metadata-json-file to generate contract file(*.gpc)"
+    needs: job4
+    
+  job6:
+    name: register contract in the blockchain
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "you can use *.gpc file to register contract in the blockchain"
+    needs: job5
+    
+  job7:
+    name: execute unittest
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "run unittest python file"
+    needs: job6
