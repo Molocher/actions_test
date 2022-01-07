@@ -20,7 +20,7 @@ jobs:
         
       - name: List files in the repository
         run: |
-          ls ${{github.workspace}}
+          ls -l ${{github.workspace}}
         
 #       - name: Hello world
 #         run: python ${{github.workspace}}/test.py
