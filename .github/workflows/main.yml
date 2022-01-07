@@ -22,7 +22,14 @@ jobs:
         run: |
           ls ${{github.workspace}}
         
-      - name: Hello world
-        run: python ${{github.workspace}}/test.py
-        
+#       - name: Hello world
+#         run: python ${{github.workspace}}/test.py
+    
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - run: java -cp java HelloWorldApp
+
 
