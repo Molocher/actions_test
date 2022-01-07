@@ -1,0 +1,23 @@
+workflow通过on关键字定义触发条件，有三类触发事件
+1.人工触发
+on: workflow_dispatch
+2.定时触发
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+    
+    
+3.webhook触发
+当有人fork仓库时触发
+on:
+  fork
+  
+当有人star仓库时触发
+on:
+  watch:
+    types: [started]
+    
+当有新建的Issue时触发
+on:
+  issues:
+   type: [opened]
